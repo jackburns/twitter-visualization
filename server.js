@@ -19,11 +19,12 @@ var client = new Twitter({
 
 // sends previous game information or starts a new game
 app.get('/username/:username', function (req, res) {
+  var username = req.params.username.replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"");
 
   async.parallel([
     function(callback) {
       client.get('/search/tweets', {
-        q: 'from:' + req.params.username + ' @',
+        q: 'from:' + username + ' @',
         count: 3200
       }, function(error, item) {
         callback(error, item);
@@ -31,7 +32,7 @@ app.get('/username/:username', function (req, res) {
     },
     function(callback) {
       client.get('search/tweets', {
-        q: '@' + req.params.username,
+        q: '@' + username,
         count: 3200
         }, function(error, item) {
           callback(error, item);
@@ -46,11 +47,11 @@ app.get('/username/:username', function (req, res) {
         transformTweets(results[0].statuses, userModels);
         var model = {
           user: {
-            username: req.params.username
+            username: username
           },
           models: userModels
         };
-        getProfileImageUrl(req.params.username).then(function(url) {
+        getProfileImageUrl(username).then(function(url) {
           model.user.profile_image_url = url;
         });
         Q.allSettled(promises).done(function() {

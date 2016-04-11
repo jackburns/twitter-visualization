@@ -1,4 +1,5 @@
 var App = (function () {
+  View.init();
 
   var getData = function() {
     View.clear();
@@ -10,7 +11,7 @@ var App = (function () {
       } else {
         $('.error').css('display', 'none');
         console.log(json);
-        View.init(json.user, json.models);
+        View.displayData(json.user, json.models);
         View.animate();
       }
     }).fail(function() {

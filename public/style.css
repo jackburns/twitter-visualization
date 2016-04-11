@@ -11,12 +11,13 @@ a {
 }
 
 .wrapper {
-	background-color: #ffffff;
+	background-color: white;
 	vertical-align: middle;
 	height: 32px;
-	color: #000000;
+	color: black;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	width: 420px;
 }
 
 .wrapper span {
@@ -35,10 +36,10 @@ a {
 }
 
 .wrapper #submit {
-	color: #000000;
+	color: black;
 	text-align: center;
 	margin-left: 15px;
-	border-left: 1px solid #000000;
+	border-left: 1px solid black;
 	padding-left: 12px;
 }
 
@@ -48,11 +49,12 @@ a {
 }
 
 .main {
-	color: #ffffff;
+	color: white;
 	position: absolute;
 	top: 0;
 	left: 0;
 	margin: 0 auto;
+	padding-left: 20px;
 }
 
 .error {
