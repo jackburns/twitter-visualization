@@ -3,10 +3,48 @@ body {
 	overflow: hidden;
 	background-image: url('assets/wallpaper.jpg');
 	background-size: cover;
+	font-family: sans-serif;
 }
 
 a {
 	color:#0078ff;
+}
+
+.wrapper {
+	background-color: #ffffff;
+	vertical-align: middle;
+	height: 32px;
+	color: #000000;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.wrapper span {
+	height: 32px;
+	font-size: 24px;
+	margin-left: 8px;
+	color: #0000c0;
+}
+
+.wrapper input {
+	height: 32px;
+	font-size: 24px;
+	margin-left: 5px;
+	border: none;
+	outline: none;
+}
+
+.wrapper #submit {
+	color: #000000;
+	text-align: center;
+	margin-left: 15px;
+	border-left: 1px solid #000000;
+	padding-left: 12px;
+}
+
+.wrapper #submit:hover {
+	color: #0000c0;
+	cursor: pointer;
 }
 
 .main {

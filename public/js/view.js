@@ -1,7 +1,7 @@
 var View = (function () {
   var container;
 
-  var camera, cameraControls, scene, renderer, mesh;
+  var camera, cameraControls, scene, renderer, mesh, id;
 
   var clock = new THREE.Clock();
 
@@ -211,7 +211,7 @@ var View = (function () {
   function animate() {
     var delta = clock.getDelta();
 
-    requestAnimationFrame(animate);
+    id = requestAnimationFrame(animate);
 
     cameraControls.update(delta);
 
@@ -226,8 +226,24 @@ var View = (function () {
 
     renderer.render(scene, camera);
   }
+
+  function clear() {
+    console.log('clearing');
+    if(id) {
+      cancelAnimationFrame( id );
+    }
+    if(scene) {
+      for( var i = scene.children.length - 1; i >= 0; i--) {
+        scene.children[i].deallocate();
+        scene.children[i].remove();
+      }
+    }
+    userPositions = [];
+  }
+
   return {
     init: init,
-    animate: animate
+    animate: animate,
+    clear: clear
   };
 }());

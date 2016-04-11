@@ -39,20 +39,24 @@ app.get('/username/:username', function (req, res) {
       }
     ], function(err, results) {
       var userModels = [];
-      transformStatuses(results[1].statuses, userModels);
-      transformTweets(results[0].statuses, userModels);
-      var model = {
-        user: {
-          username: req.params.username
-        },
-        models: userModels
-      };
-      getProfileImageUrl(req.params.username).then(function(url) {
-        model.user.profile_image_url = url;
-      });
-      Q.allSettled(promises).done(function() {
-        res.send(model);
-      });
+      if(err) {
+        res.send(err);
+      } else {
+        transformStatuses(results[1].statuses, userModels);
+        transformTweets(results[0].statuses, userModels);
+        var model = {
+          user: {
+            username: req.params.username
+          },
+          models: userModels
+        };
+        getProfileImageUrl(req.params.username).then(function(url) {
+          model.user.profile_image_url = url;
+        });
+        Q.allSettled(promises).done(function() {
+          res.send(model);
+        });
+      }
     });
 });
 
@@ -119,7 +123,11 @@ function getProfileImageUrl(username) {
   promises.push(deferred.promise);
   request('https://www.twitter.com/' + username + '/profile_image?size=original',
     function(e, response) {
-      deferred.resolve(response.request.uri.href);
+      if(response){
+        deferred.resolve(response.request.uri.href);
+      } else {
+        deferred.resolve(null);
+      }
     }
   );
   return deferred.promise;
