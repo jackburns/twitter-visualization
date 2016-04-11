@@ -1,0 +1,19 @@
+{
+  "name": "twitter-visualizaton",
+  "version": "0.0.1",
+  "description": "Twitter User Interaction Visualization",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^2.0.0-rc.2",
+    "express": "^4.13.4",
+    "mtwitter": "^1.6.4",
+    "twitter": "^1.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "author": "Jack Burns",
+  "license": "ISC"
+}
