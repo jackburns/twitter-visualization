@@ -26,6 +26,7 @@ var View = (function () {
 
     cameraControls = new THREE.TrackballControls(camera, renderer.domElement);
     cameraControls.target.set(0, 0, 0);
+    cameraControls.minDistance = 300;
     cameraControls.maxDistance = 3000;
 
     scene = new THREE.Scene();
@@ -86,11 +87,12 @@ var View = (function () {
         function getRandomInt(min, max) {
           return Math.floor(Math.random() * (max - min + 1)) + min;
         }
+
         function getUserPosition() {
           var v = new THREE.Vector3(getRandomInt(-1000, 1000), getRandomInt(-1000, 1000), getRandomInt(-1000, 1000));
           var valid = true;
           for(var i = 0; i < userPositions.length; i++) {
-            if (Math.abs(v.distanceTo(userPositions[i])) < 200) {
+            if (Math.abs(v.distanceTo(userPositions[i])) < 500) {
               return getUserPosition();
             }
           }
