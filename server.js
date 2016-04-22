@@ -138,5 +138,5 @@ function getProfileImageUrl(username) {
 app.use(express.static(__dirname + '/public'));
 
 var port      = process.env.PORT || 3000;
-var ipaddress = process.env.IP || "127.0.0.1";
-var server    = app.listen(port, ipaddress);
+//var ipaddress = process.env.IP || "127.0.0.1";
+var server    = app.listen(port);
