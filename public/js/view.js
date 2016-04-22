@@ -56,7 +56,6 @@ var View = (function () {
     );
 
     sphere.scale.x = -1;
-    console.log(sphere);
     scene.add(sphere);
     wrapper_id = sphere.id;
   }
@@ -191,11 +190,6 @@ var View = (function () {
         };
 
         var updateSphere = function() {
-          if(!once) {
-            console.log(this.pulseSize);
-            once = false;
-          }
-
           var scale = this.scale.x;
           this.sizeIncreasing ? scale += this.pulseSize : scale -= this.pulseSize;
 
@@ -351,7 +345,6 @@ var View = (function () {
       cancelAnimationFrame( id );
     }
     console.log(scene);
-    renderer.clear();
     var clearTypes = ['Mesh', 'Points', 'Line'];
     if(scene) {
       for( var i = scene.children.length - 1; i >= 0; i--) {
@@ -363,7 +356,6 @@ var View = (function () {
         }
       }
     }
-    console.log(scene);
     userPositions = [];
   }
 

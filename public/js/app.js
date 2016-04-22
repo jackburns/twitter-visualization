@@ -1,5 +1,6 @@
 var App = (function () {
   View.init();
+  View.animate();
 
   var getData = function() {
     View.clear();
