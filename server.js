@@ -6,14 +6,14 @@ var async = require('async');
 var request = require('request');
 var Q = require('q');
 
-var config = require('./config.json');
+//var config = require('./config.json');
 
 var app = express();
 var promises = [];
 
 var client = new Twitter({
-  consumer_key: config.key,
-  consumer_secret: config.secret,
+  consumer_key: process.env.key,
+  consumer_secret: process.env.secret,
   app_only_auth: true
 });
 
