@@ -1,7 +1,7 @@
 var View = (function () {
   var container;
 
-  var camera, cameraControls, scene, renderer, mesh, id, wrapper_id;
+  var camera, cameraControls, scene, renderer, mesh, id, wrapper_id, main_id;
   var origin = new THREE.Vector3(0, 1, 0);
   var labels = [];
   var raycaster = new THREE.Raycaster();
@@ -74,7 +74,6 @@ var View = (function () {
         var main;
         // Draw main user
         textureLoader.load(user.profile_image_url, function(texture) {
-          texture.repeat.set(1.6, 1);
           var mainMaterial = new THREE.MeshPhongMaterial({
             map: texture
           });
@@ -84,6 +83,7 @@ var View = (function () {
           main.pulseSize = 0;
           scene.add(main);
           userPositions.push(main.position);
+          main_id = main.id;
 
           createPopupLabel('@' + user.username, main.id);
 
@@ -287,13 +287,11 @@ var View = (function () {
       var child = scene.children[i];
       if (child.type === 'Mesh' && child.id !== wrapper_id) {
         hideLabel(child.id);
-        child.up.applyAxisAngle( new THREE.Vector3(0, 1, 0), Math.PI / 2);
-
-        child.lookAt(camera.position);
+        if(child.id != main_id) {
+          child.up.applyAxisAngle( new THREE.Vector3(0, 1, 0), Math.PI / 2);
+          child.lookAt(camera.position);
+        }
         child.update();
-      //  lookAtAndOrient(child, camera, origin);
-        // child.quaternion.copy(camera.quaternion);
-        // child.rotation.setFromRotationMatrix( camera.matrix );
 
       } else if (child.type === 'Points') {
         child.update();
