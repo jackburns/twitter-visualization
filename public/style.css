@@ -1,7 +1,7 @@
 body {
 	margin: 0px;
 	overflow: hidden;
-	background-image: url('assets/wallpaper.jpg');
+	/*background-image: url('assets/wallpaper.jpg');*/
 	background-size: cover;
 	font-family: sans-serif;
 }
@@ -60,4 +60,14 @@ a {
 .error {
 	color: red;
 	display: none;
+}
+
+.popup {
+  position: absolute;
+  opacity: 0.8;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
