@@ -6,7 +6,7 @@ Built with three.js | node.js
 
 Demo | https://twitter-visualization.herokuapp.com/
 
-Requires Twitter API key
+Requires Twitter API key and node.js
 
 - `git clone https://github.com/raptiq/twitter-visualization.git`
 - `npm install`
