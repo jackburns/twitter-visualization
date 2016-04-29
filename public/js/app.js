@@ -1,4 +1,5 @@
 var App = (function () {
+  // initialize Three.js view
   View.init();
   View.animate();
 
@@ -6,12 +7,13 @@ var App = (function () {
     View.clear();
     console.log('getting data');
     var input = $('#input').val();
+    // get twitter models from server
     return $.getJSON('/username/' + input, function(json) {
-      if(json.length === 0) {
+      if(json.models.length === 0) {
         $('.error').css('display', 'block');
       } else {
         $('.error').css('display', 'none');
-        console.log(json);
+        // render the stuff!
         View.displayData(json.user, json.models);
         View.animate();
       }
@@ -20,9 +22,9 @@ var App = (function () {
     });
   };
 
+  // set submit listener
   function init() {
     $('#submit').on('click', getData);
-
   }
 
   return {
